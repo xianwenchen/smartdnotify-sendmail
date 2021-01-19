@@ -1,0 +1,22 @@
+#+title: smartdnotify-sendmail
+#+author: Xianwen Chen
+
+smartdnotify-sendmail is a shell script that sends the error type and error message to an email address.
+
+The error type and the error message are generated automatically by smartd.
+The error type is defined by $SMARTD_FAILTYPE.
+The error message is defined by $SMARTD_MESSAGE.
+
+The recipient of the email is set in /etc/smartd/smartd.conf.
+
+In the example setting of smartd.conf below, the recipient of error emails is set to root@localhost.
+A test email is sent each time smartd is up.
+
+#+BEGIN_SRC sh :eval no
+DEVICESCAN -a -m root@vx84 -M exec /path/to/smartdnotify-sendmail -M test
+#+END_SRC
+
+The source code is written in the literate programming style.
+See [[file:DOCUMENTATION/smartdnotify-sendmail-design.org]].
+
+smartdnotify-sendmail is licensed under GPL version 2.
