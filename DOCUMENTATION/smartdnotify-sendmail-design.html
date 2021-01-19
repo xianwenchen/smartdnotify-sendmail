@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-01-19 Tue 13:18 -->
+<!-- 2021-01-19 Tue 13:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Design of smartdnotify-sendmail</title>
@@ -244,7 +244,7 @@ for the JavaScript code in this tag.
 <div id="content">
 <h1 class="title">The Design of smartdnotify-sendmail</h1>
 <p>
-smartdnotify-sendmail is a shell script that sends the error message of smartd to an email address.
+smartdnotify-sendmail is a shell script that sends the error message of smartd to an email address, using <i>sendmail</i>.
 </p>
 
 <p>
@@ -252,21 +252,25 @@ It is a shell script.
 </p>
 
 <p>
+The script from inspired from the <i>usr/local/bin/smartdnotify example from <a href="https://wiki.archlinux.org/index.php/S.M.A.R.T.">https://wiki.archlinux.org/index.php/S.M.A.R.T.</a>, which used /mail</i>.
+</p>
+
+<p>
 smartdnotify-sendmail starts with a shebang.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org40b9bb7"><span style="color: #b22222;">#</span><span style="color: #b22222;">!/bin/</span><span style="color: #a020f0;">sh</span>
+<pre class="src src-sh" id="org99c388c"><span style="color: #b22222;">#</span><span style="color: #b22222;">!/bin/</span><span style="color: #a020f0;">sh</span>
 </pre>
 </div>
 
 <p>
-Use sendmail to email the $SMARTD<sub>MESSAGE</sub> to $SMARTD<sub>ADDRESS</sub>.
+Use <i>sendmail</i> to email the $SMARTD<sub>MESSAGE</sub> to $SMARTD<sub>ADDRESS</sub>.
 The subject line is the $SMARTD<sub>FAILTYPE</sub>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org98d1e1b"><span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">"subject:$SMARTD_FAILTYPE\n\n$SMARTD_MESSAGE"</span> | sendmail -v <span style="color: #8b2252;">"$SMARTD_ADDRESS"</span>
+<pre class="src src-sh" id="org1f4bfb8"><span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">"subject:$SMARTD_FAILTYPE\n\n$SMARTD_MESSAGE"</span> | sendmail -v <span style="color: #8b2252;">"$SMARTD_ADDRESS"</span>
 </pre>
 </div>
 
@@ -276,7 +280,7 @@ Tangle it to ../smartdnotify-sendmail.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh" id="org8fc98e6">&lt;&lt;shebang&gt;&gt;
+<pre class="src src-sh" id="org75ff4db">&lt;&lt;shebang&gt;&gt;
 
 &lt;&lt;sendmail&gt;&gt;
 </pre>
@@ -294,7 +298,7 @@ The code below is executed, when this org document is exported, which sets ../sm
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Xianwen Chen</p>
-<p class="date">Created: 2021-01-19 Tue 13:18</p>
+<p class="date">Created: 2021-01-19 Tue 13:26</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -1,9 +1,11 @@
 #+title: The Design of smartdnotify-sendmail
 #+author: Xianwen Chen
 
-smartdnotify-sendmail is a shell script that sends the error message of smartd to an email address.
+smartdnotify-sendmail is a shell script that sends the error message of smartd to an email address, using /sendmail/.
 
 It is a shell script.
+
+The script from inspired from the /usr/local/bin/smartdnotify example from [[https://wiki.archlinux.org/index.php/S.M.A.R.T.]], which used /mail/.
 
 smartdnotify-sendmail starts with a shebang.
 
@@ -12,7 +14,7 @@ smartdnotify-sendmail starts with a shebang.
 #!/bin/sh
 #+end_src
 
-Use sendmail to email the $SMARTD_MESSAGE to $SMARTD_ADDRESS.
+Use /sendmail/ to email the $SMARTD_MESSAGE to $SMARTD_ADDRESS.
 The subject line is the $SMARTD_FAILTYPE.
 
 #+name: sendmail
