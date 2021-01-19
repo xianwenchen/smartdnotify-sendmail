@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo "subject:$SMARTD_FAILTYPE\n\n$SMARTD_MESSAGE" | sendmail -v "$SMARTD_ADDRESS"

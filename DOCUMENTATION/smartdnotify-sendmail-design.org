@@ -1,0 +1,38 @@
+#+title: The Design of smartdnotify-sendmail
+#+author: Xianwen Chen
+
+smartdnotify-sendmail is a shell script that sends the error message of smartd to an email address.
+
+It is a shell script.
+
+smartdnotify-sendmail starts with a shebang.
+
+#+name: shebang
+#+begin_src sh :exports codes :eval no
+#!/bin/sh
+#+end_src
+
+Use sendmail to email the $SMARTD_MESSAGE to $SMARTD_ADDRESS.
+The subject line is the $SMARTD_FAILTYPE.
+
+#+name: sendmail
+#+begin_src sh :exports codes :eval no
+echo "subject:$SMARTD_FAILTYPE\n\n$SMARTD_MESSAGE" | sendmail -v "$SMARTD_ADDRESS"
+#+end_src
+
+Put every piece together.
+Tangle it to ../smartdnotify-sendmail.
+
+#+name: pxl
+#+begin_src sh :tangle ../smartdnotify-sendmail :exports codes :eval no :noweb yes
+<<shebang>>
+
+<<sendmail>>
+#+end_src
+
+../smartdnotify-sendmail needs to be executable.
+The code below is executed, when this org document is exported, which sets ../smartdnotify-sendmail to be executable.
+
+#+BEGIN_SRC sh :exports both
+chmod +x ../smartdnotify-sendmail
+#+END_SRC
